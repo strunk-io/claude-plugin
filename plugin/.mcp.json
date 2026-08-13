@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "strunk": {
+      "type": "http",
+      "url": "https://strunk.io/mcp"
+    }
+  }
+}

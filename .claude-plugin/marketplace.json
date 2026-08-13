@@ -1,0 +1,21 @@
+{
+  "name": "strunk",
+  "owner": {
+    "name": "Strunk",
+    "email": "hello@strunk.io",
+    "url": "https://strunk.io"
+  },
+  "metadata": {
+    "description": "Strunk — the review round-trip between your harness and the docs your reviewers already use.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "strunk",
+      "source": "./plugin",
+      "description": "Publish a harness-authored doc to Google Docs for review, pull anchored reviewer comments back, triage and draft revisions with full repo/data context, then reply and resolve threads in place.",
+      "version": "0.1.0",
+      "homepage": "https://strunk.io"
+    }
+  ]
+}
