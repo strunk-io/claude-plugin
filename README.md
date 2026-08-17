@@ -7,9 +7,11 @@ feedback in **Google Docs**, where your reviewers already are. Strunk publishes 
 review, pulls anchored reviewer comments back, lets you triage and draft revisions with full
 context, then replies and resolves threads in place. No copy/paste, no PR, no one switching tools.
 
-This repo is the public Claude Code plugin: a small install-once bundle of the **Strunk skill**
-(the review-round-trip workflow and judgment) and the **Strunk remote MCP** (the atomic tools,
-served over Streamable HTTP at `https://strunk.io/mcp` and protected by WorkOS/AuthKit OAuth).
+This repo is the public Claude Code plugin: a small install-once bundle for the **Strunk remote MCP**
+(the atomic tools, served over Streamable HTTP at `https://strunk.io/mcp` and protected by
+WorkOS/AuthKit OAuth). The review-round-trip workflow and judgment ships *with* the connector — the
+MCP's `get_workflow` tool serves it live and always-current — so there's no separate skill to install
+or keep in sync, and it works the same on any harness that connects to the MCP.
 
 ## Install
 
@@ -28,7 +30,8 @@ consent). Manage or reconnect the connection any time with `/mcp`.
 
 ## Use it
 
-Just say what you want in plain language and the skill drives the loop over the MCP tools:
+Just say what you want in plain language and Claude drives the loop over the MCP tools (calling
+`get_workflow` for the review workflow):
 
 - *"Publish this for review"* → `publish_doc` returns a Google Doc URL to share.
 - *"Load Google Doc X"* → `pick_google_doc` connects an existing doc.
@@ -45,9 +48,11 @@ Google Docs version history is the undo.
 plugin/
   .claude-plugin/plugin.json      # plugin manifest
   .mcp.json                       # remote MCP: https://strunk.io/mcp
-  skills/strunk/SKILL.md          # the Strunk skill
   README.md
 ```
+
+The review workflow is not bundled here — the MCP's `get_workflow` tool serves it live from the
+Strunk backend, so it stays current without a plugin update.
 
 ## Links
 

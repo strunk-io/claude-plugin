@@ -1,6 +1,6 @@
 {
   "name": "strunk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The bridge between your agentic harness and Google Docs. Publish a harness-authored doc out for human review, pull anchored reviewer comments back, triage and draft revisions with full repo/data context, then reply and resolve threads in place — no copy/paste, no PR, no tool-switching.",
   "author": {
     "name": "Strunk",
