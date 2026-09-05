@@ -24,9 +24,16 @@ the browser.
 Setup is not finished when the connection succeeds. It is finished when the author has seen one reviewer
 comment come back into this session.
 
-## If a second Strunk server appears
+## If the author already had Strunk as a connector
 
-An author who already added Strunk as a connector, and then installs this plugin, ends up with two
-entries pointing at the same URL: the connector, already authorized, and `plugin:strunk:strunk`, which
-reports "Needs authentication". Both work once authorized, and having both is only confusing. Tell them
-they can keep either one and remove the other, and that the connector is the one already signed in.
+In Claude Code, installing this plugin **takes over** the entry for `https://strunk.io/mcp`. The
+author's existing connector stops appearing in `claude mcp list`, and `plugin:strunk:strunk` appears in
+its place reporting "Needs authentication". Their previous authorization is not reused, so Strunk looks
+signed out until they authorize the plugin's entry.
+
+Nothing is lost. Authorizing once restores it, and uninstalling the plugin brings the original
+connector back exactly as it was, still connected.
+
+So do not tell them the installation is broken, and do not tell them to keep the connector and remove
+the plugin's entry: while the plugin is installed, the plugin's entry is the one in use. Tell them to
+authorize it, which the first Strunk tool call prompts for.
