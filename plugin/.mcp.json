@@ -2,7 +2,11 @@
   "mcpServers": {
     "strunk": {
       "type": "http",
-      "url": "https://strunk.io/mcp"
+      "url": "https://strunk.io/mcp",
+      "headers": {
+        "X-Strunk-Install": "plugin"
+      },
+      "note": "Strunk's remote MCP server. Uses OAuth: the first Strunk tool call prompts the author to authorize. The header marks this connection as a plugin install, which is otherwise indistinguishable from a connector install."
     }
   }
 }

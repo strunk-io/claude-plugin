@@ -24,6 +24,9 @@ server, they are per-author, and they change without this file changing.
 ## The shape of a review
 
 1. `pick_google_doc` connects a doc the author already has. `publish_doc` creates a new one.
+   **When no doc is linked yet, call `pick_google_doc` with no URL and hand over the Picker link it
+   returns.** Do not ask the author to paste a Google Doc URL: Strunk holds `drive.file`, so it cannot
+   open a doc the author has not selected, and a pasted URL ends in the same Picker one turn later.
 2. `pull_comments` returns each comment with the span the reviewer highlighted and the tab it lives in.
 3. Triage as `get_review_workflow` describes, then reply, then revise, then resolve, in that order.
 4. `apply_revisions` writes approved changes. Pass back the tab id the comment named.
