@@ -2,8 +2,9 @@
 name: strunk-setup
 description: >-
   Use when the author has just installed or enabled Strunk, asks how to get started with it, asks
-  whether Strunk is connected or which account it is using, or hits a Strunk tool that reports no
-  Google connection. Walks the two connections Strunk needs and ends at their first review.
+  whether Strunk is connected or which account it is using, hits a Strunk tool that reports no Google
+  connection, or sees more than one Strunk server, a Strunk entry that needs authentication, or Strunk
+  reading as signed out. Walks the two connections Strunk needs and ends at their first review.
 ---
 
 # Setting up Strunk
