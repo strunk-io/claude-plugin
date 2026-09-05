@@ -1,0 +1,56 @@
+{
+  "skill_name": "strunk-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just installed Strunk. What now?",
+      "expected_output": "The assistant checks the account, reports which one is connected, and drives towards a first review rather than stopping at 'connected'.",
+      "expectations": [
+        "get_account is called",
+        "The assistant reports which Strunk account answered",
+        "The assistant asks whether the user already has a Google Doc with comments on it, or offers to publish a draft",
+        "The assistant does not declare setup finished merely because the connection succeeded"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Strunk says it can't see my Google Docs.",
+      "expected_output": "get_account reports the Google connection state and returns the account URL, which is handed over as plain text on its own line.",
+      "expectations": [
+        "get_account is called",
+        "The account URL is given to the user as plain text on its own line",
+        "The URL is not hidden inside a markdown link",
+        "The assistant explains that Google needs connecting once in the browser"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Which account is Strunk using?",
+      "expected_output": "get_account answers directly.",
+      "expectations": [
+        "get_account is called",
+        "The email of the connected Strunk account is reported",
+        "The assistant does not guess or ask the user which account they think it is"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I've got two Strunk servers showing up and one says it needs authentication.",
+      "expected_output": "The assistant recognises the connector and plugin both being installed, and explains that either can be kept.",
+      "expectations": [
+        "The assistant explains that a connector and this plugin both provide the same Strunk server",
+        "The assistant says the already-authorized one can be kept and the other removed",
+        "The assistant does not tell the user their installation is broken"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Set up a new Next.js project with Tailwind.",
+      "expected_output": "Ordinary project scaffolding. Strunk is not involved.",
+      "expectations": [
+        "No Strunk tool is called",
+        "The assistant does not mention connecting Google Docs"
+      ]
+    }
+  ]
+}

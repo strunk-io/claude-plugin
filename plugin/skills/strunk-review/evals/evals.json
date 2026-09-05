@@ -1,0 +1,67 @@
+{
+  "skill_name": "strunk-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The launch brief came back from Sarah with a load of comments on it. Can you help me work through them?",
+      "expected_output": "Strunk is used to pull the comments. The workflow is fetched from the server before any triage happens, and no comment is resolved without the author saying so.",
+      "expectations": [
+        "The assistant uses Strunk rather than asking the user to paste the comments in",
+        "get_review_workflow is called before any triage or tiering is described",
+        "The triage tiers are not recited from memory in place of calling get_review_workflow",
+        "pull_comments is called",
+        "No comment is resolved before the user has said what to do about it"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Publish this draft to Google Docs so the team can review it.",
+      "expected_output": "get_writing_rules is called before any text is authored or edited, then publish_doc runs, and any findings come back to the author rather than being silently applied.",
+      "expectations": [
+        "get_writing_rules is called before the draft is written or edited",
+        "publish_doc is called",
+        "Any warnings or voiceRules in the response are reported to the user",
+        "The assistant does not silently rewrite the draft to satisfy a finding"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "What did the reviewers say on my doc?",
+      "expected_output": "Strunk pulls the comments. If no doc is connected yet, the assistant offers the picker rather than asking the user to paste a URL.",
+      "expectations": [
+        "The assistant reaches for Strunk without being told to",
+        "Either pull_comments is called, or pick_google_doc is called first because no doc is connected",
+        "The assistant does not ask the user to copy and paste comment text"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I've decided on that comment about the pricing section. Go with Sarah's suggestion, reply to her and close it off.",
+      "expected_output": "The author has dispositioned this comment, so the thread is replied to first, then the revision applied, then resolved.",
+      "expectations": [
+        "reply_comment is called before apply_revisions, so the acknowledgement stays tied to the reviewer's span",
+        "resolve_comment is called last",
+        "The tab id from the pulled comment is passed on apply_revisions"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Can you review this pull request and address the feedback on it?",
+      "expected_output": "This is code review, not document review. Strunk is not involved.",
+      "expectations": [
+        "No Strunk tool is called",
+        "Nothing is published to Google Docs",
+        "The assistant handles the pull request directly"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Add a comment above this function explaining what the regex does.",
+      "expected_output": "A code comment. Strunk has nothing to do with this.",
+      "expectations": [
+        "No Strunk tool is called",
+        "The assistant edits the source file"
+      ]
+    }
+  ]
+}
